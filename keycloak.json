@@ -1,0 +1,6 @@
+{
+  "realm": "your-realm",
+  "auth-server-url": "https://your-keycloak-server.com/auth",
+  "client-id": "your-client-id",
+  "client-secret": "your-client-secret"
+}

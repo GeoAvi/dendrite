@@ -1,0 +1,30 @@
+version: '3'
+services:
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - KEYCLOAK_USER=your-keycloak-user
+      - KEYCLOAK_PASSWORD=your-keycloak-password
+    ports:
+      - '8080:8080'
+  stripe:
+    image: stripe/stripe-cli
+    environment:
+      - STRIPE_SECRET_KEY=your-stripe-secret-key
+      - STRIPE_PUBLISHABLE_KEY=your-stripe-publishable-key
+    ports:
+      - '8000:8000'
+  frontend:
+    build: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - keycloak
+      - stripe
+  backend:
+    build: .
+    ports:
+      - '4000:4000'
+    depends_on:
+      - keycloak
+      - stripe
